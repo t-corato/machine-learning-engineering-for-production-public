@@ -1,0 +1,81 @@
+DEPLOYMENT PATTERNS
+
+  Common deployment cases 
+	1- New product/capability -> start with a small amount of traffic and slowly ramp up
+	2 - Automate/ Assist with manual task -> show mode deployment
+	3 - Replace previous ML system
+	- Gradual ramp up with monitoring
+	- Rollback 
+
+  Show mode deployment:
+ 	- ML system and human run in parallel
+ 	- ML system's output is not used for decisions but benchmarked against human decisions
+
+  Canary deployment:
+	- Roll out to a small fraction of traffic initially 
+ 	- Monitor system and ramp up traffic gradually
+
+  Blue green deployment:
+ 	- Old version -> blue
+ 	- New version -> green
+ 	- it consists in having a router that first uses the blue to make decisions and then switches 
+ 	  to the green at some point
+	 - this allows to an easy rollback in case anything goes wrong 
+ 	- can also be done gradually 
+
+  To deploy a system we should think about the degrees of automation 
+	Degrees of automation
+ 	- Human only
+	 - Shadow mode
+ 	- AI assistance 
+	 - Partial automation ( if algo is unsure we use human)
+	 - Full Automation
+
+	There is a spectrum from only human to full automation, and is not even needed to go all the 	
+	way to full automation 
+
+	AI assistance and Partial automation are examples of Human in the loop
+
+MONITORING
+
+   Best practices for monitor ml system
+	- Monitoring dashboard 
+		- Server load
+		- fraction of non-null output
+		- fraction of missing input values
+	- Brainstorm things that could go wrong
+	- brainstorms a few statistics that will detect the problem
+
+   Example of metrics to track 
+	- Software Metrics (memory, compute, latency, throughput, server load)
+	- Input Metrics (avg input len, avg input volumes, num of missing values ...)
+	- Output Metrics (times return is null, time user redoes search ...)
+
+   ML modelling is iterative, so is deployment 
+	- Deployment / Monitoring 
+	- Traffic
+	- Performance Analysis 
+	- go back to monitoring / Deployment
+
+   When we have metrics that we are tracking we need to put thresholds, above / below which we would 	
+   receive a warning/allarm
+	
+   Adapt metrics and thresholds over time
+ 	
+   We can either do manual retraining or automatic retraining if the performance of the model
+   deteriorates 
+
+
+PIPELINE MONITORING 
+
+
+	Each of the components of the pipeline should be monitored with software/input/output metrics 
+	
+	issue:
+		How quickly does data change 
+			User data usually has slower data drift (except if shock (eg COVID))
+			Enterprise data (B2B) can shift very fast
+		
+
+	
+		

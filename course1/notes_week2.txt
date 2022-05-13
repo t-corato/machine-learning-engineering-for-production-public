@@ -1,0 +1,177 @@
+SELECTING and TRAINING A MODEL
+
+Key Challenges 
+ 	- Doing well on training set 
+	- Doing well on dev/test set
+	- Doing well on business metrics / project goals 
+
+Why low average error isn't good enough
+	- Performance on disproportionately important examples 
+		- there are some cases when users would not forgive a mistake and they would lose 
+		  trust (eg. I search Youtube and the first case isn't YouTube.com)
+		- Average accuracy weights everything equally but in reality some things are more 
+		  important to do right than others 
+
+	- Performance on Key Slices of Data Set
+		- treat fairly all users/ retailers / product categories
+
+	- Rare classes 
+		- Skewed data distribution 
+		- accuracy in rare classes 
+
+Establish a Baseline 
+	- baseline performance
+		- establish a level that is acceptable for a certain category (eg. What a human 
+		  would be able to do) (Human Level Performance)
+
+	- Baseline on unstructured data -> HLP, because humans are good in unstructured
+
+	- Baseline on structured data ->  HLP is not really useful 
+
+	Ways to establish a baseline:
+		- HLP
+		- Literature search for state of the art / open source
+		- Quick and dirty implementation
+		- Performance of the older system
+
+	Baseline helps to indicate what might be possible. In some cases (eg. HLP) it also gives a 
+	sense of what might be irreducible error/Bayes error
+
+Tips for getting started 
+	- Literature search to see what is possible, not the latest but something reasonable that 
+	  allows us to get started quickly 
+
+	- Find open source implementation if available (can help with baseline)
+
+	- A reasonable also with good data will often outperform a great also with not so good data
+
+
+	Deployment constraint when picking a model
+	
+	- should we take into account deployment constraint when picking a model
+		- Yes if baseline established and the goal is to build and deploy 
+		- No if purpose is to establish a baseline and determine if it's possible and might
+		  be worth pursuing 
+
+	Sanity check for code and algorithm
+	
+	- Try to overfit a small training dataset before training on a large one
+
+
+ERROR ANALYSIS AND PERFORMANCE AUDITING
+
+	We can do error analysis by deciding our data into categories and seeing in which categories 
+	we are underperforming compared to the baseline
+	
+	Iterative process of error analysis
+		- Examine examples
+		- propose tags 
+	
+	Useful metrics per tag
+		- What fraction of errors have that tag?
+		- Of all the data with that tag, what fraction is misclassified ? 
+		- What fraction of all the data has that tag ?
+		- How much room of improvement there is on that tag (confront with baseline)
+
+Prioritising what to work on
+	We should decide based on:
+   		- How much room for Improvement there is
+		- How frequently that category appears
+		- How easy is to improve accuracy in that category
+		- Hew important it is to improve in that category
+
+	For the categories that we have chosen to prioritise
+		- Collect more data -> can be very expensive, but we can be more specific like this
+		- Use data augmentation to get more data
+		- improve label accuracy/data quality 
+	
+Skewed Datasets 
+	For skewed datasets is better to have confusion matrix
+
+	Use precision and recall:
+		- Precision -> TP / (TP + FP)
+		- Recall -> TP / (TP + FN)
+
+	How to compare precision and recall
+		- F1 score -> 2 / ((1/P) + (1/R)) 
+
+Performance Auditing 
+	Check for accuracy, fairness/bias and other problems
+	
+		- Brainstorm the ways the system might go wrong 
+			- Performance of subset data
+			- How common are certain errors 
+			- Performance on rare classes ....
+		
+		- Establish metrics to assess performance against these issues on appropriate slices 
+		  of data
+	 
+		- Get business / product owner buy-in 
+
+DATA ITERATION
+
+Data-centric AI Development
+	
+	Model centric view -> take the data you have and develop a model that does well as possible on 	  
+			      it
+			  -> Hold the data fixed and iteratively improve the code/model
+			  -> Most of the academia research is done in this
+	
+	Data centric view -> the quality of the data is paramount. Use tools to improve the data 
+			    quality; this will allow multiple models to do well
+			 -> Hold the code fixed and iteratively improve the data 
+
+Data Augmentation (for unstructured data)
+
+	Goal: 
+		- Create realistic examples that:
+			- the algorithm does poorly on
+			- humans (or other baseline) do well on (else it might be too hard)
+	Checklist:
+		- Does it sound realistic ?
+		- is x -> y mapping clear ?
+		- is the algorithm currently doing poorly on it?
+
+	Data iteration Loop
+		- Add / Improve data (holding model fixed)
+		- Training 
+		- Error analysis 
+
+Can Adding data hurt?
+
+	For unstructured data problem if:
+		- the model is large (low bias)
+		- the mapping x -> y is clear
+	
+		Then adding data rarely hurts accuracy
+
+Adding Features
+	
+	For structured data problems
+		- really hard to do data augmentation
+		- better to add features
+
+	Data iteration
+		- Model
+		- Training
+		- Error Analysis
+			- Error analysis can be harder if there is no good baseline to compare to
+			- Error analysis/ user feedback and benchmarking to competitors can all 
+			  provide inspiration for features to add
+
+		- Model (add features)
+
+	Adding features might be more useful because the data you have might be all the data there is 
+
+ 	
+
+	
+
+		
+	
+
+
+
+		
+
+	
