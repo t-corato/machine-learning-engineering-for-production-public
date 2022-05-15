@@ -1,0 +1,166 @@
+DENINE DATA AND ESTABLISH BASELINE 
+
+Why is data definition hard?
+	- labels inconsistency 
+	- labels ambiguity 
+	- Feature ambiguity 
+	
+
+	Data Definition questions
+		- What is the input x?
+		- What features need to be included?
+		- What is the target label y?
+			- Needs to be consistent	
+		
+Major types of data problems 
+	Unstructured vs Structured 
+
+		For unstructured data product we can use humans to label data
+		We can also use data augmentation
+		
+		For Structured is harder to obtain more new data 
+	
+	Small data vs Big Data (roughly > 10000)
+
+		For small data clean labels are critical, we can also clean them manually
+		For big data the emphasis is on data process
+
+	
+Small data and label consistency 
+
+	Why is label consistency important?
+		if the data is small and the labels are noisy then we don't know what function to 	
+		fit
+
+		with a lot more data the noisy labels are not as important because we can fit to the 
+		average labels
+
+		If the labels are clean and consistent we might be able to fit the right function 
+		even with just few data points 
+
+	
+	Big data problems can have small data challenges too
+		Problems with a large dataset but where there's a long tail or rare events in the
+		input will have small data challenges too.
+		eg. 
+			- Web search
+			- Self driving cars
+			- Products recommendation system
+
+Improving label consistency 
+
+	- Have multiple labellers label the same example
+	- When there is disagreement have MLE, subject matter expert and/or labellers discuss the 
+	  definition of y to reach an agreement
+	- If labellers believe that x does not contain enough information, consider changing x
+	- Iterate until it's hard to significantly increase agreement
+
+		
+	Example
+		- Standardize labels 
+		- Merge classes 
+	
+	Have a class/label to capture uncertainty 
+		- create a borderline class between 0 and 1
+		- eg. add the [unintelligible] to a speech recognition
+
+	Small data vs Big data
+		Small data
+			- Usually small numbers of labellers 
+			- Can ask labellers to discuss specific labels
+		
+		Big data
+			- Get to consistent definition with a small group 
+			- Then send labelling instruction to labellers 
+			- voting/consensus labelling (can work but overused)
+
+
+Human Level Performance
+	Why use HLP?
+		- Estimate Bales Error / irreducible error to help with error analysis and 
+		  prioritisation
+		- In academia is used to establish and beat a respectable benchmark to support 
+		  publication
+		- Business/product owner ask for 99% accuracy, HLP helps establish a more reasonable 
+		  target
+		- "Prove" that ML system is superior to humans doing the job and thus the business 
+		   or product owner should adopt it 
+			- The issue with this approach is that if the ground truth is also HLP then 
+			  humans could have performed badly because of inconsistency of labels, not 
+			  because of actual issues
+
+Raising HLP
+	When the HLP is externally defined, HLP gives an estimate for Bayes error/irreducible error
+	But often ground truth is just another human label
+
+	- When the label y comes from a human, HLP < 100 % may just indicate ambiguous labelling 
+	  indications
+	- Improving label consistency will raise HLP
+	- This makes it harder for the ML to beat the HLP, but the more consistent labels will raise 
+	  the ML performance, which is likely to benefit the actual application performance
+		
+		
+		
+	HLP on structure data
+		- Structured data problems are less likely to involve human labellers
+		- HLP is less frequently used 
+		- But there are some exceptions
+	
+	HLP is important but HLP needs to have label consistency
+		
+	
+LABEL AND ORGANISE DATA
+
+Obtaining Data
+
+	-  Get into the iteration loop as quickly as possible, you can always go back and collect 
+	   more data later 
+	- How much data we can get in n days?
+	- Exception -> if you know that you need at least m samples to train
+
+	
+	Labeling data
+		- In house vs outsourced vs crowdsourced 
+		- Having MLE label data is expensive but doing this for just a few days usually is 
+		  fine 
+		- Who is qualified to label?
+	- Don't increase data by more than 10x at the time 
+
+
+Data Pipeline 
+	- Generally there is some data cleaning from raw data to ML
+	- Issue: 
+		- Preprocessing scripts are very messy
+		- In production the data might not look the same 
+		- How to replicate? 
+	- Pre processing scripts needs to be replicable in later stages of projects 
+
+	- POC:
+		- Goal is to decide if the application is workable and worth deploying
+		- Get the prototype to work
+		- it's ok if the data pre processing is manual. Take notes and comments
+
+	- Production phase:
+		- After project utility is established, use more sophisticated tools to make sure 
+		  the data pipeline is replicable
+
+Meta-data, data provenance and lineage
+	- Keep track of data provenance and lineage
+	- Data provenance -> where it comes from
+	- Data lineage -> sequences of steps needed to get that data 
+
+	Meta data:
+		- Is data about data
+		- Is useful to store metadata for error analysis, to get key insights 
+
+Balanced train/dev/test splits
+	- in small data problems there is a higher chance of having some parts that are not 
+	  representative
+ 
+		 
+
+
+		
+
+		
+	

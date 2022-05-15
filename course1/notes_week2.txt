@@ -163,8 +163,37 @@ Adding Features
 
 	Adding features might be more useful because the data you have might be all the data there is 
 
- 	
+Experiment Tracking 
 
+	What to track:
+		- Algorithm / code versioning
+		- Dataset used
+		- Hyperparameters
+		- Results
+
+	Tracking Tools:
+		- Text files -> for small experimentations
+		- Spreadsheet 
+		- experiment tracking system (eg sagemaker studio)
+
+	Desirable features
+		- Information needed to replicate results 
+		- Experiment results, ideally with summary metrics / analysis
+		- Resource monitoring
+	 	- Visualisation
+		- Model error analysis
+
+	
+From big data to good data
+	
+	Try to ensure consistently high-quality data in all phases of the ML project lifecycle
+
+	Good data:
+		- Covers important cases (good coverage of input x)
+		- Is defined consistently (definition of label y is unambiguous)
+		- Has timely feedback from production data (distribution covers data drift and
+		  concept drift )
+		- Is sized appropriately	
 	
 
 		
